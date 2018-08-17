@@ -12,6 +12,19 @@
 ;; different autocompletion
 (ido-mode 1)
 
+;; MELPA package support
+(when (>= emacs-major-version 24)
+  (require 'package)
+  (add-to-list
+    'package-archives
+    '("melpa" . "https://melpa.org/packages/")
+   t))
+
+  ;; (add-to-list
+  ;;   'package-archives
+  ;;   '("melpa-stable" . "https://stable.melpa.org/packages/")
+  ;;  t))
+
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
@@ -25,13 +38,6 @@
 (recentf-mode 1)
 (global-set-key (kbd "<f7>") 'recentf-open-files)
 
-;; MELPA package support
-(when (>= emacs-major-version 24)
-  (require 'package)
-  (add-to-list
-   'package-archives
-   '("melpa" . "https://stable.melpa.org/packages/")
-   t))
 
 ;; Packages
 (custom-set-variables
@@ -88,7 +94,10 @@
 (define-key global-map (kbd "C-c c") 'org-capture)
 (setq org-capture-templates
       '(("t" "todo" entry (file+headline "E:/Dropbox/notes/daily-todo.org" "Today")
-	 "* TODO %?\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+0d\"))\n")))
+	 "* TODO %?\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+0d\"))\n\n")))
+
+;; time logging
+(setq org-log-done 'time)
 
 ;; Abbreviations
 (clear-abbrev-table global-abbrev-table)
